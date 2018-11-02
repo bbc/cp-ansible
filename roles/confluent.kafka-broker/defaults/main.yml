@@ -1,5 +1,6 @@
 kafka:
   broker:
+    id: "{{kafka_broker_id}}"
     user: cp-kafka
     group: confluent
     config_file: /etc/kafka/server.properties
