@@ -11,8 +11,16 @@ confluent:
     metrics_enabled: true
   repository:
     debian:
-      key_url: https://packages.confluent.io/deb/5.0/archive.key
-      repository: "deb [arch=amd64] https://packages.confluent.io/deb/5.0 stable main"
+# We want to access these packages through a local mirror, using aptly. On aptly,jupiter.bbc.co.uk the following commands were run:
+# wget -O - https://packages.confluent.io/deb/5.0/archive.key | gpg --no-default-keyring --keyring trustedkeys.gpg --import
+# aptly mirror create confluent https://packages.confluent.io/deb/5.0 stable main
+# aptly mirror update confluent
+# aptly snapshot create confluent from mirror confluent
+# aptly publish snapshot confluent confluent
+#      key_url: https://packages.confluent.io/deb/5.0/archive.key
+#      repository: "deb [arch=amd64] https://packages.confluent.io/deb/5.0 stable main"
+      key_url: http://aptly.jupiter.bbc.co.uk/aptly/key.pub.txt
+      repository: "deb [arch=amd64] http://aptly.jupiter.bbc.co.uk/aptly/confluent/ stable main"
     redhat:
       main:
         baseurl: https://packages.confluent.io/rpm/5.0

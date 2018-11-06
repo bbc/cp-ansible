@@ -1,6 +1,8 @@
-- name: Add open JDK repo
-  apt_repository:
-    repo: ppa:openjdk-r/ppa
+# Don't see the need for this - openjdk-8-jdk installs fine from standard ubuntu repositories and is a later version.
+# Might be needed for 12.04 and 14.04 machines, which we don't have to worry about.
+#- name: Add open JDK repo
+#  apt_repository:
+#    repo: ppa:openjdk-r/ppa
 - name: Install Java
   apt:
     name: "openjdk-8-jdk"
