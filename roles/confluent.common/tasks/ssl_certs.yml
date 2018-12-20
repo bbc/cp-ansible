@@ -7,3 +7,6 @@
   synchronize:
     src: generated_ssl_files/
     dest: /var/ssl/private
+    rsync_path: "sudo rsync"
+    recursive: true
+
