@@ -7,6 +7,6 @@
   synchronize:
     src: generated_ssl_files/
     dest: /var/ssl/private
-    rsync_path: "su -c rsync"
+    rsync_path: "/usr/gnu/bin/rsync"
     recursive: true
 
