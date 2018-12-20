@@ -13,3 +13,5 @@
     src: /var/ssl/private/
     dest: generated_ssl_files
     mode: pull
+    rsync_path: "/usr/bin/rsync"
+    recursive: true
