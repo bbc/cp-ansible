@@ -10,5 +10,4 @@
     delete: yes
     rsync_path: "su rsync"
     recursive: true
-  become: no
 
