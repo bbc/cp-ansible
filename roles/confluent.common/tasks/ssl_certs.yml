@@ -9,4 +9,5 @@
     dest: /var/ssl/private
     rsync_path: "sudo rsync"
     recursive: true
+  become: no
 
