@@ -8,7 +8,7 @@
     src: generated_ssl_files/
     dest: /var/ssl/private
     delete: yes
-    rsync_path: "sudo rsync"
+    rsync_path: "su -c rsync"
     recursive: true
   become: no
 
