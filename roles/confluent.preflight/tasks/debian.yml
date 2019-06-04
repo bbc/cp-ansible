@@ -1,6 +1,7 @@
-- name: Add open JDK repo
-  apt_repository:
-    repo: ppa:openjdk-r/ppa
+# Don't see the need for this - openjdk-8-jdk installs fine from standard ubuntu repositories and is a later version.
+#- name: Add open JDK repo
+#  apt_repository:
+#    repo: ppa:openjdk-r/ppa
 - name: Install Java
   apt:
     name: "openjdk-8-jdk"
