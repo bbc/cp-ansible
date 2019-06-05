@@ -1,9 +1,5 @@
 # Maintained by Ansible
-#listeners=SSL://:{{broker.config.port}}
-listeners=SSL://{% for host in groups['zookeeper'] %}{% if loop.index > 1%},{% endif %}{{ host }}{% endfor %}:{{broker.config.port}}
-
-advertised.listeners=SSL://{% for host in groups['zookeeper'] %}{% if loop.index > 1%},{% endif %}{{ host }}{% endfor %}:{{broker.config.port}}
-
+listeners=SSL://:{{broker.config.port}}
 
 {% include './includes/base_server.properties.j2' %}
 
