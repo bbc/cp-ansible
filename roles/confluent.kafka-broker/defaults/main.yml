@@ -35,3 +35,5 @@ kafka:
       confluent.metrics.reporter.topic.replicas: 3
       ssl.endpoint.identification.algorithm: ""
       confluent.metrics.reporter.ssl.endpoint.identification.algorithm: ""
+      # For a durable setup with 4 cluster members, this should be overridden to be 2.
+      min.insync.replicas: 1
