@@ -1,3 +1,41 @@
+### BBC additions - use supplied certificate for ssl mode.
+- name: Copy certificate to server
+  copy:
+    content: "{{kafka_cert_pem}}"
+    dest: "/etc/ssl/certs/kafka.pem"
+    owner: root
+    group: root
+    mode: 0644
+  when: security_mode == "ssl"
+
+- name: Copy key to server
+  copy:
+    content: "{{kafka_cert_key}}"
+    dest: "/etc/ssl/private/kafka.key"
+    owner: root
+    group: root
+    mode: 0400
+  when: security_mode == "ssl"
+  
+- name: convert certificate to keystore
+  command: openssl pkcs12 -export -inkey /etc/ssl/private/kafka.key -in /etc/ssl/certs/kafka.pem -out /tmp/kafka-keystore.pkcs12 -password pass:{{ keystore_password }}
+  args:
+    creates: /tmp/kafka-keystore.pkcs12
+  when: security_mode == "ssl"
+
+- name: Create java keystore from cert
+  command: keytool -importkeystore -noprompt -srckeystore /tmp/kafka-keystore.pkcs12 -srcstoretype pkcs12 -destkeystore /var/ssl/private/client.keystore.jks -storepass {{ keystore_password }} -srcstorepass {{ keystore_password }}
+  args:
+    creates: /var/ssl/private/client.keystore.jks
+  when: security_mode == "ssl"
+
+- name: Create java truststore from cert
+  command: keytool -import -noprompt -file /etc/ssl/certs/kafka.pem -alias kafkacert -keystore /var/ssl/private/client.truststore.jks -storepass {{ keystore_password }}
+  args:
+    creates: /var/ssl/private/client.truststore.jks
+  when: security_mode == "ssl"
+### End BBC additions
+
 - name: broker group
   group:
     name: "{{kafka.broker.group}}"
