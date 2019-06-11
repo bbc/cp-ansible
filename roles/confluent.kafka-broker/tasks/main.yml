@@ -1,4 +1,11 @@
 ### BBC additions - use supplied certificate for ssl mode.
+- name: Install bbc-eng-bsd-ssl
+  apt:
+    update_cache: yes
+    cache_valid_time: 300
+    state: latest
+    name: bbc-eng-bsd-ssl
+
 - name: Copy certificate to server
   copy:
     content: "{{kafka_cert_pem}}"
@@ -15,7 +22,7 @@
     owner: root
     group: root
     mode: 0400
-  when: security_mode == "ssl"
+  when: security_mode == "ssl"e
   
 - name: convert certificate to keystore
   command: openssl pkcs12 -export -inkey /etc/ssl/private/kafka.key -in /etc/ssl/certs/kafka.pem -out /tmp/kafka-keystore.pkcs12 -password pass:{{ keystore_password }}
@@ -29,11 +36,12 @@
     creates: /var/ssl/private/client.keystore.jks
   when: security_mode == "ssl"
 
-- name: Create java truststore from cert
-  command: keytool -import -noprompt -file /etc/ssl/certs/kafka.pem -alias kafkacert -keystore /var/ssl/private/client.truststore.jks -storepass {{ keystore_password }}
-  args:
-    creates: /var/ssl/private/client.truststore.jks
-  when: security_mode == "ssl"
+# The below didn't work, so using system default truststore with certs from bbc-eng-bsd-ssl
+#- name: Create java truststore from cert
+#  command: keytool -import -noprompt -file /etc/ssl/certs/kafka.pem -alias kafkacert -keystore /var/ssl/private/client.truststore.jks -storepass {{ keystore_password }}
+#  args:
+#    creates: /var/ssl/private/client.truststore.jks
+#  when: security_mode == "ssl"
 ### End BBC additions
 
 - name: broker group

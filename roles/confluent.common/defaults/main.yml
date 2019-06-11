@@ -8,7 +8,8 @@ confluent:
   package_name: confluent-platform-2.11
   support:
     customer_id: anonymous
-    metrics_enabled: true
+# turn off metrics for now.
+    metrics_enabled: false
   repository:
     debian:
 # We want to access these packages through a local mirror, using aptly.
