@@ -22,7 +22,7 @@
     owner: root
     group: root
     mode: 0400
-  when: security_mode == "ssl"e
+  when: security_mode == "ssl"
   
 - name: convert certificate to keystore
   command: openssl pkcs12 -export -inkey /etc/ssl/private/kafka.key -in /etc/ssl/certs/kafka.pem -out /tmp/kafka-keystore.pkcs12 -password pass:{{ keystore_password }}

@@ -3,7 +3,8 @@ zookeeper:
     clientPort: 2181
 broker:
   config:
-    port: 9092
+# This should be 9092 for plaintext, 9093 for ssl. Just hardcoding to 9093 as we're just using ssl.
+    port: 9093
 confluent:
   package_name: confluent-platform-2.11
   support:
