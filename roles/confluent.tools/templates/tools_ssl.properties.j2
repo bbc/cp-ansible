@@ -2,9 +2,9 @@
 {% include './includes/base_tools.properties.j2' %}
 
 #SSL additions
-ssl.truststore.location=/var/ssl/private/client.truststore.jks
-ssl.truststore.password=confluent
+#ssl.truststore.location=/var/ssl/private/client.truststore.jks
+#ssl.truststore.password={{ keystore_password }}
 ssl.keystore.location=/var/ssl/private/client.keystore.jks
-ssl.keystore.password=confluent
-ssl.key.password=confluent
+ssl.keystore.password={{ keystore_password }}
+ssl.key.password={{ keystore_password }}
 security.protocol=SSL

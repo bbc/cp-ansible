@@ -2,9 +2,9 @@
 {% include './includes/base_kafka-rest.properties.j2' %}
 
 #SSL additions
-client.ssl.truststore.location=/var/ssl/private/client.truststore.jks
-client.ssl.truststore.password=confluent
+#client.ssl.truststore.location=/var/ssl/private/client.truststore.jks
+#client.ssl.truststore.password={{ keystore_password }}
 client.ssl.keystore.location=/var/ssl/private/client.keystore.jks
-client.ssl.keystore.password=confluent
-client.ssl.key.password=confluent
+client.ssl.keystore.password={{ keystore_password }}
+client.ssl.key.password={{ keystore_password }}
 client.security.protocol=SSL

@@ -4,9 +4,9 @@ kafkastore.bootstrap.servers={% for host in groups['broker'] %}{% if loop.index 
 {% include './includes/base_schema-registry.properties.j2' %}
 
 #SSL additions
-kafkastore.ssl.truststore.location=/var/ssl/private/client.truststore.jks
-kafkastore.ssl.truststore.password=confluent
+#kafkastore.ssl.truststore.location=/var/ssl/private/client.truststore.jks
+#kafkastore.ssl.truststore.password={{ keystore_password }}
 kafkastore.ssl.keystore.location=/var/ssl/private/client.keystore.jks
-kafkastore.ssl.keystore.password=confluent
-kafkastore.ssl.key.password=confluent
+kafkastore.ssl.keystore.password={{ keystore_password }}
+kafkastore.ssl.key.password={{ keystore_password }}
 kafkastore.security.protocol=SSL

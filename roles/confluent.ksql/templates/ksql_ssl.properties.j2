@@ -2,15 +2,16 @@
 {% include './includes/base_ksql.properties.j2' %}
 
 #SSL additions
-ssl.truststore.location=/var/ssl/private/client.truststore.jks
-ssl.truststore.password=confluent
+# BBC - fall back to system default truststore relying on bbc-eng-bsd-ssl
+#ssl.truststore.location=/var/ssl/private/client.truststore.jks
+#ssl.truststore.password={{ keystore_password }}
 ssl.keystore.location=/var/ssl/private/client.keystore.jks
-ssl.keystore.password=confluent
-ssl.key.password=confluent
+ssl.keystore.password={{ keystore_password }}
+ssl.key.password={{ keystore_password }}
 security.protocol=SSL
-confluent.monitoring.interceptor.ssl.truststore.location=/var/ssl/private/client.truststore.jks
-confluent.monitoring.interceptor.ssl.truststore.password=confluent
+#confluent.monitoring.interceptor.ssl.truststore.location=/var/ssl/private/client.truststore.jks
+#confluent.monitoring.interceptor.ssl.truststore.password={{ keystore_password }}
 confluent.monitoring.interceptor.ssl.keystore.location=/var/ssl/private/client.keystore.jks
-confluent.monitoring.interceptor.ssl.keystore.password=confluent
-confluent.monitoring.interceptor.ssl.key.password=confluent
+confluent.monitoring.interceptor.ssl.keystore.password={{ keystore_password }}
+confluent.monitoring.interceptor.ssl.key.password={{ keystore_password }}
 confluent.monitoring.interceptor.security.protocol=SSL
