@@ -1,5 +1,5 @@
 ### BBC modifications - use https protocol and port in listeners
-ksql_listener_port: 8433
+ksql_listener_port: 8443
 
 ksql:
   config_file: /etc/ksql/ksql-server.properties
