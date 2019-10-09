@@ -30,11 +30,18 @@
     creates: /tmp/kafka-keystore.pkcs12
   when: security_mode == "ssl"
 
+- name: Make sure keystore is absent
+  file:
+    state: absent
+    path: /var/ssl/private/client.keystore.jks
+
 - name: Create java keystore from cert
   command: keytool -importkeystore -noprompt -srckeystore /tmp/kafka-keystore.pkcs12 -srcstoretype pkcs12 -destkeystore /var/ssl/private/client.keystore.jks -storepass {{ keystore_password }} -srcstorepass {{ keystore_password }}
   args:
     creates: /var/ssl/private/client.keystore.jks
   when: security_mode == "ssl"
+  notify:
+    - restart kafka
 
 # The below didn't work, so using system default truststore with certs from bbc-eng-bsd-ssl
 #- name: Create java truststore from cert
