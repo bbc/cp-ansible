@@ -8,7 +8,7 @@
 
 - name: Copy certificate to server
   copy:
-    content: "{{kafka_cert_pem}}"
+    src: "../files/{{ inventory_hostname }}/{{ inventory_hostname }}.crt"
     dest: "/etc/ssl/certs/kafka.pem"
     owner: root
     group: root
@@ -17,7 +17,7 @@
 
 - name: Copy key to server
   copy:
-    content: "{{kafka_cert_key}}"
+    src: "../files/{{ inventory_hostname }}/{{ inventory_hostname }}.key"
     dest: "/etc/ssl/private/kafka.key"
     owner: root
     group: root
