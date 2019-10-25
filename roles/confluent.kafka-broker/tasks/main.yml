@@ -24,6 +24,12 @@
     mode: 0400
   when: security_mode == "ssl"
   
+- name: Make sure temporary keystore file is absent
+  file:
+    state: absent
+    path: /tmp/kafka-keystore.pkcs12
+  when: security_mode == "ssl"
+  
 - name: convert certificate to keystore
   command: openssl pkcs12 -export -inkey /etc/ssl/private/kafka.key -in /etc/ssl/certs/kafka.pem -out /tmp/kafka-keystore.pkcs12 -password pass:{{ keystore_password }}
   args:
@@ -34,6 +40,7 @@
   file:
     state: absent
     path: /var/ssl/private/client.keystore.jks
+  when: security_mode == "ssl"
 
 - name: Create java keystore from cert
   command: keytool -importkeystore -noprompt -srckeystore /tmp/kafka-keystore.pkcs12 -srcstoretype pkcs12 -destkeystore /var/ssl/private/client.keystore.jks -storepass {{ keystore_password }} -srcstorepass {{ keystore_password }}
