@@ -1,3 +1,4 @@
+BBC: This is just a copy of the upstream project without any changes.
 
 # CP-Ansible
 
