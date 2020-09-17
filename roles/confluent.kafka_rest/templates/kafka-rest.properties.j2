@@ -11,8 +11,8 @@ ssl.keystore.location={{kafka_rest_keystore_path}}
 ssl.keystore.password={{kafka_rest_keystore_storepass}}
 ssl.key.password={{kafka_rest_keystore_keypass}}
 {% if kafka_rest_ssl_mutual_auth_enabled|bool or mds_ssl_enabled|bool %}
-ssl.truststore.location={{kafka_rest_truststore_path}}
-ssl.truststore.password={{kafka_rest_truststore_storepass}}
+#ssl.truststore.location={{kafka_rest_truststore_path}}
+#ssl.truststore.password={{kafka_rest_truststore_storepass}}
 ssl.client.auth=false
 {% endif %}
 {% endif %}
@@ -47,8 +47,8 @@ bootstrap.servers={% for host in groups['kafka_broker'] %}{% if loop.index > 1%}
 schema.registry.url={% for host in groups['schema_registry'] %}{% if loop.index > 1%},{% endif %}{{ schema_registry_http_protocol }}://{{ host }}:{{ schema_registry_listener_port }}{% endfor %}
 
 {% if schema_registry_ssl_enabled|bool %}
-schema.registry.ssl.truststore.location={{kafka_rest_truststore_path}}
-schema.registry.ssl.truststore.password={{kafka_rest_truststore_storepass}}
+#schema.registry.ssl.truststore.location={{kafka_rest_truststore_path}}
+#schema.registry.ssl.truststore.password={{kafka_rest_truststore_storepass}}
 schema.registry.ssl.keystore.location={{kafka_rest_keystore_path}}
 schema.registry.ssl.keystore.password={{kafka_rest_keystore_storepass}}
 schema.registry.ssl.key.password={{kafka_rest_keystore_keypass}}
