@@ -21,12 +21,13 @@
 
 - meta: flush_handlers
 
-- name: Add open JDK repo
-  apt_repository:
-    repo: "{{ubuntu_java_repository}}"
-  when:
-    - not custom_apt_repo|bool
-    - install_java|bool
+# BBC: Don't see the need for this - openjdk-8-jdk installs fine from standard ubuntu repositories and is a later version.
+#- name: Add open JDK repo
+#  apt_repository:
+#    repo: "{{ubuntu_java_repository}}"
+#  when:
+#    - not custom_apt_repo|bool
+#    - install_java|bool
 
 - name: Install Java
   apt:
