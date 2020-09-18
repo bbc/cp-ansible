@@ -31,7 +31,7 @@
 
     - set_fact:
         confluent_server_enabled: false
-      when: ansible_facts.packages['confluent-kafka-2.12'] is defined
+      when: ansible_facts.packages['confluent-kafka-2.11'] is defined
 
     - name: Set Current Package Version
       set_fact:
@@ -40,7 +40,7 @@
 
     - name: Set Current Package Version
       set_fact:
-        zookeeper_current_version: "{{ ansible_facts.packages['confluent-kafka-2.12'][0]['version'] }}"
+        zookeeper_current_version: "{{ ansible_facts.packages['confluent-kafka-2.11'][0]['version'] }}"
       when: not confluent_server_enabled|bool
 
     - debug:
