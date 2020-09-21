@@ -56,7 +56,5 @@
     mode: '0644'
   loop:
     - "{{keystore_path}}"
-    - "{{truststore_path}}"
-    - "{{ca_cert_path}}"
     - "{{cert_path}}"
     - "{{key_path}}"
