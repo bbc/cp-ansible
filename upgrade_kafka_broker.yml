@@ -82,7 +82,7 @@
 
     - name: Set Current Package Version
       set_fact:
-        kafka_broker_current_version: "{{ ansible_facts.packages['confluent-kafka-2.12'][0]['version'] }}"
+        kafka_broker_current_version: "{{ ansible_facts.packages['confluent-kafka-2.11'][0]['version'] }}"
       when: not confluent_server_enabled|bool
 
     - debug:
