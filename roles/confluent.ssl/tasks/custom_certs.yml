@@ -1,5 +1,4 @@
 ---
-# BBC: bbc-eng-bsd-ssl package is installed, so no need to copy CA certs here
 - name: Copy CA Cert to Host
   copy:
     remote_src: true

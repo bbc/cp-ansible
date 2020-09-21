@@ -43,8 +43,8 @@ zookeeper.connect={% for host in groups['zookeeper'] %}{% if loop.index > 1%},{%
 {% if zookeeper_ssl_enabled | bool %}
 zookeeper.ssl.client.enable=true
 zookeeper.clientCnxnSocket=org.apache.zookeeper.ClientCnxnSocketNetty
-#zookeeper.ssl.truststore.location={{kafka_broker_truststore_path}}
-#zookeeper.ssl.truststore.password={{kafka_broker_truststore_storepass}}
+zookeeper.ssl.truststore.location={{kafka_broker_truststore_path}}
+zookeeper.ssl.truststore.password={{kafka_broker_truststore_storepass}}
 {% if fips_enabled | bool %}
 zookeeper.ssl.trustmanager.algorithm=PKIX
 zookeeper.ssl.truststore.type=pkcs12
@@ -69,8 +69,8 @@ zookeeper.set.acl=true
 confluent.schema.registry.url={% for host in groups['schema_registry'] %}{% if loop.index > 1%},{% endif %}{{ schema_registry_http_protocol }}://{{ host }}:{{ schema_registry_listener_port }}{% endfor %}
 
 {% if schema_registry_ssl_enabled|bool %}
-#confluent.schema.registry.ssl.truststore.location={{kafka_broker_truststore_path}}
-#confluent.schema.registry.ssl.truststore.password={{kafka_broker_truststore_storepass}}
+confluent.schema.registry.ssl.truststore.location={{kafka_broker_truststore_path}}
+confluent.schema.registry.ssl.truststore.password={{kafka_broker_truststore_storepass}}
 confluent.schema.registry.ssl.keystore.location={{kafka_broker_keystore_path}}
 confluent.schema.registry.ssl.keystore.password={{kafka_broker_keystore_storepass}}
 confluent.schema.registry.ssl.key.password={{kafka_broker_keystore_keypass}}
@@ -114,8 +114,8 @@ confluent.metadata.server.authentication.method=BEARER
 confluent.metadata.server.ssl.keystore.location={{kafka_broker_keystore_path}}
 confluent.metadata.server.ssl.keystore.password={{kafka_broker_keystore_storepass}}
 confluent.metadata.server.ssl.key.password={{kafka_broker_keystore_keypass}}
-#confluent.metadata.server.ssl.truststore.location={{kafka_broker_truststore_path}}
-#confluent.metadata.server.ssl.truststore.password={{kafka_broker_truststore_storepass}}
+confluent.metadata.server.ssl.truststore.location={{kafka_broker_truststore_path}}
+confluent.metadata.server.ssl.truststore.password={{kafka_broker_truststore_storepass}}
 {% endif %}
 
 # Authorization Configuration
