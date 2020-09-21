@@ -17,7 +17,7 @@
 
     - set_fact:
         confluent_server_enabled: false
-      when: ansible_facts.packages['confluent-kafka-2.11'] is defined
+      when: ansible_facts.packages['confluent-kafka-2.12'] is defined
 
     - name: Set Current Package Version
       set_fact:
